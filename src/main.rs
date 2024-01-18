@@ -1,7 +1,11 @@
+use std::io;
+
 fn main() {
     variables();
     println!();
     scalar_types();
+    println!();
+    compound_types();
 }
 
 fn variables() {
@@ -45,4 +49,48 @@ fn scalar_types() {
 
     let c: char = 'A';
     println!("Char: {c}");
+}
+
+fn compound_types() {
+    //tuples
+    let tup: (i32, f64, u8) = (-500, 6.4, 2);
+    let (x, y, z) = tup;
+
+    println!("The value of y is: {y}");
+
+    let negative_five_hundred = tup.0;
+    let two = tup.2;
+
+    println!(
+        "Negative five hundred: {negative_five_hundred}, two: {two}"
+    );
+
+    //arrays
+    let a: [u8; 5] = [1, 2, 3, 4, 5];
+
+    let first_element = a[0];
+    println!("The first element of the array is: {first_element}");
+
+    fn runtime_error() {
+        let array = [3; 5];
+
+        println!("Enter array index.");
+
+        let mut index = String::new();
+
+        io::stdin()
+            .read_line(&mut index)
+            .expect("Failed to read line.");
+
+        let index: usize = index
+            .trim()
+            .parse()
+            .expect("Entered index is not a number.");
+        
+        let element = array[index];
+
+        println!(
+            "The value of the element at index {index} is: {element}."
+        );
+    }
 }
