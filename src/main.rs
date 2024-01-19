@@ -6,6 +6,8 @@ fn main() {
     scalar_types();
     println!();
     compound_types();
+    println!();
+    functions_and_comments();
 }
 
 fn variables() {
@@ -71,26 +73,60 @@ fn compound_types() {
     let first_element = a[0];
     println!("The first element of the array is: {first_element}");
 
-    fn runtime_error() {
-        let array = [3; 5];
+    // runtime_error(a);
+}
 
-        println!("Enter array index.");
+fn runtime_error(array: [u8; 5]) {
+    // let array = [3; 5];
 
-        let mut index = String::new();
+    println!("Enter array index.");
 
-        io::stdin()
-            .read_line(&mut index)
-            .expect("Failed to read line.");
+    let mut index = String::new();
 
-        let index: usize = index
-            .trim()
-            .parse()
-            .expect("Entered index is not a number.");
-        
-        let element = array[index];
+    io::stdin()
+        .read_line(&mut index)
+        .expect("Failed to read line.");
 
-        println!(
-            "The value of the element at index {index} is: {element}."
-        );
+    let index: usize = index
+        .trim()
+        .parse()
+        .expect("Entered index is not a number.");
+    
+    let element = array[index];
+
+    println!(
+        "The value of the element at index {index} is: {element}."
+    );
+}
+
+fn functions_and_comments() {
+    fn labeled_number(value: i32, label: char) {
+        println!("The value with label is {value}{label}");
     }
+
+    labeled_number(5, 'h');
+
+    let y = {
+        // this line is a statement because it contains semicolon
+        // statements return () by default
+        let x = 3;
+        // the line doesn't have a semicolon because its an expression
+        x + 1
+    };
+
+    println!("The value of y is: {y}");
+
+    fn five() -> i32 {
+        5
+    }
+
+    let x = five();
+    println!("The value of x is: {x}");
+
+    fn nine(x: i32) -> i32 {
+        x + five() + 10
+    }
+
+    let z = nine(x); // should output 20
+    println!("The value of z is: {z}");
 }
