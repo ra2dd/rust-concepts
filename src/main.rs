@@ -8,6 +8,10 @@ fn main() {
     compound_types();
     println!();
     functions_and_comments();
+    println!();
+    conditions();
+    println!();
+    loops();
 }
 
 fn variables() {
@@ -129,4 +133,37 @@ fn functions_and_comments() {
 
     let z = nine(x); // should output 20
     println!("The value of z is: {z}");
+}
+
+fn conditions() {
+    let number = 3;
+
+    if number < 7 {
+        println!("condition was true");
+    } else {
+        println!("condition was false");
+    }
+
+    // the if condidtion must be an bool
+    if number == 3 {
+        println!("The number is three.")
+    }
+
+    if number % 2 == 0 {
+        println!("The number {number} is divisible by 2");
+    } else if number % 3 == 0 {
+        println!("The number {number} is divisible by 3");
+    } else {
+        println!("The number {number} is not divisible by 2 or 3");
+    }
+
+    let condidtion = true;
+    // when assigining values from condition
+    // the values must be the same type 
+    let number = if condidtion { 10 } else { 20 };
+    println!("The new value of number is {number}");
+}
+
+fn loops() {
+    
 }
