@@ -8,3 +8,5 @@ This is a rust code written while reading through Rust Book [Common Programming 
 - data types
 - functions
 - comments
+- conditionals
+- loops
