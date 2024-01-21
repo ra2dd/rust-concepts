@@ -229,6 +229,105 @@ fn loops() {
         println!("End of for loop count!");
     }
 
+    fn fa_to_cel() {
+        println!("Type temperature in farenheit to convert it to celcius:");
+
+        let mut fa = String::new();
+
+        io::stdin()
+            .read_line(&mut fa)
+            .expect("Failed to read line.");
+
+        let fa: i32 = match fa.trim().parse() {
+            Ok(num) => num,
+            Err(_) => return println!("You provided invalid number."),
+        };
+
+        let cel = (fa - 32) * 5 / 9;
+
+        println!("{fa} fahrenheit converted to celcius is {cel}.");
+    }
+
+    fn get_fib_number() {
+        println!("Type in nth fibonnaci number:");
+
+        let mut fib_index = String::new();
+
+        io::stdin()
+            .read_line(&mut fib_index)
+            .expect("Falied to read line.");
+
+        let fib_index: u32 = match fib_index.trim().parse() {
+            Ok(num) => num,
+            Err(_) => return println!("You provided invalid number."),
+        };
+
+        let (mut a, mut b, mut helper) = (1, 1, 1);
+        for index in 2..fib_index {
+            helper = b;
+            b = a + b;
+            a = helper;
+        }
+
+        println!("The {fib_index} index fib number is {b}");
+    }
+
+    fn carol_lyrics() {
+        let start = [
+            "On the",
+            "day of Christmas",
+            "My true love brought to me",
+        ];
+
+        let verses = [
+            "Twelve drummers drumming",
+            "Eleven pipers piping",
+            "Ten lords a-leaping",
+            "Nine ladies dancing",
+            "Eight maids a-milking",
+            "Seven swans a-swimming",
+            "Six geese a-laying",
+            "Five golden rings",
+            "Four calling birds",
+            "Three French hens",
+            "Two turtle doves",
+            "And a partridge in a pear tree",
+        ];
+
+        let counters = [
+            "first",
+            "second",
+            "third",
+            "fourth",
+            "fifth",
+            "sixth",
+            "seventh",
+            "eighth",
+            "ninth",
+            "tenth",
+            "eleventh",
+            "twelfth",
+        ];
+
+        if verses.len() != counters.len() {
+            return println!("The verses and counters lengths of the carol are not equal.");
+        }
+
+        for index in 0..counters.len() {
+            println!("{} {} {}\n{}", start[0], counters[index], start[1], start[2]);
+            
+            for verse_i in (1..(index + 2)).rev() {
+                if index == 0 {
+                    println!("A partridge in a pear tree");
+                } else {
+                    println!("{}", verses[verses.len()-verse_i]);
+                }
+            }
+
+            println!();
+        }
+    }
+
     counter_loop();
     println!();
     nested_loop();
@@ -236,4 +335,8 @@ fn loops() {
     conditional_loop();
     println!();
     collection_loop();
+    println!();
+    fa_to_cel();
+    get_fib_number();
+    carol_lyrics();
 }
